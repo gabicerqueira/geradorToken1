@@ -4,7 +4,7 @@ export default function Armazenamento() {
 
     async function obterItem(chave) {
         try {
-            const tokens = await AsyncStorage.obterItem(chave);
+            const tokens = await AsyncStorage.getItem(chave);
             return JSON.parse(tokens) || [];
         }
 
@@ -28,8 +28,8 @@ export default function Armazenamento() {
     async function removerItem(chave, item) {
         try {
             let tokens = await obterItem(chave);
-            let tokensAtualizados = tokens.filter((tokens) => {
-                return (tokens !== item)
+            let tokensAtualizados = tokens.filter((token) => {
+                return (token !== item)
             })
             await AsyncStorage.setItem(chave, JSON.stringify(tokensAtualizados))
             return tokensAtualizados;

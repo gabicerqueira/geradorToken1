@@ -18,13 +18,8 @@ export function PaginaSenhas() {
         carregaTokens()
     }, [telaAtiva]);
 
-    async function carregaTokens() {
-        const tokens = await obterItem("@token");
-        defListaTokens(tokens);
-    }
-
     async function deletarToken(item) {
-        const tokens  = await removerItem("@token", item)
+        const tokens = await removerItem("@token", item)
         defListaTokens(tokens)
     };
 
@@ -41,8 +36,8 @@ export function PaginaSenhas() {
                     data={listaTokens}
                     keyExtractor={(item) => String(item)}
                     renderItem={({ item }) => <CaixaToken
-                        data={item}
-                        removePassword={() => deletarToken(item)}
+                        token={item}
+                        removerToken ={() => deletarToken(item)}
                     />}
                 />
             </View>
